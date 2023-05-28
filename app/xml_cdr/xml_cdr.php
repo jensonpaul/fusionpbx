@@ -569,6 +569,11 @@
 		echo "<th class='shrink'>".$text['label-destination']."</th>\n";
 		$col_count++;
 	}
+	// Customer Access Code column header
+	// Custom field
+	echo "<th class='no-wrap'>Customer Access Code</th>\n";
+	$col_count++;
+	// Custom field header end
 	if (permission_exists('xml_cdr_recording') && (permission_exists('xml_cdr_recording_play') || permission_exists('xml_cdr_recording_download'))) {
 		echo "<th class='center'>".$text['label-recording']."</th>\n";
 		$col_count++;
@@ -764,6 +769,8 @@
 						$content .= "		</a>\n";
 						$content .= "	</td>\n";
 					}
+				// Customer access code
+					$content .= "	<td class='middle no-link no-wrap'>".escape($row['customer_access_code'])."</td>\n";
 				//recording
 					if (permission_exists('xml_cdr_recording') && (permission_exists('xml_cdr_recording_play') || permission_exists('xml_cdr_recording_download'))) {
 						if ($record_path != '') {

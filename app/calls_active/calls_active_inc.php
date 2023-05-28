@@ -171,6 +171,7 @@
 			echo "	<th>".$text['label-app']."</th>\n";
 			echo "	<th>".$text['label-codec']."</th>\n";
 			echo "	<th>".$text['label-secure']."</th>\n";
+			echo "	<th>Customer Access Code</th>\n";
 			if (permission_exists('call_active_hangup')) {
 				echo "	<td class='action-button'>&nbsp;</td>\n";
 			}
@@ -230,6 +231,10 @@
 						echo "	<td>".(!empty($application) ? escape($application).":".escape($application_data) : null)."&nbsp;</td>\n";
 						echo "	<td>".escape($read_codec).":".escape($read_rate)." / ".escape($write_codec).":".escape($write_rate)."&nbsp;</td>\n";
 						echo "	<td>".escape($secure)."&nbsp;</td>\n";
+						echo "	<td class='no-wrap'>";
+						echo "	  <input type='text' name='customer_access_code' id='customer_access_code_field_$x' data-uuid='".escape($uuid)."' onfocus='refresh_stop()' />";
+						echo button::create(['type'=>'button','title'=>'Update','icon'=>'plus','onclick'=>"store_customer_access_code('customer_access_code_field_$x','".escape($uuid)."');"]);
+						echo "	</td>\n";
 						if (permission_exists('call_active_hangup')) {
 							echo "	<td class='action-button'>";
 							echo button::create(['type'=>'button','title'=>$text['label-hangup'],'icon'=>'phone-slash','onclick'=>"if (confirm('".$text['confirm-hangup']."')) { list_self_check('checkbox_".$x."'); list_action_set('hangup'); list_form_submit('form_list'); } else { this.blur(); return false; }",'onmouseover'=>'refresh_stop()','onmouseout'=>'refresh_start()']);

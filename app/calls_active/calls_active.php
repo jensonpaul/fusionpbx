@@ -100,6 +100,38 @@
 			ajax_get();
 		}
 
+	//custom function; provision to store customer access code during the call
+		function store_customer_access_code(element_id, call_uuid) {
+			var customer_access_code = document.getElementById(element_id).value;
+			var f = document.createElement("form");
+
+			f.setAttribute('method',"post");
+			f.setAttribute('action',"calls_store_customer_access_code.php");
+
+			var i = document.createElement("input"); //input element, text
+			i.setAttribute('type',"hidden");
+			i.setAttribute('name',"customer_access_code");
+			i.value= customer_access_code;
+
+			var k = document.createElement("input"); //input element, text
+			k.setAttribute('type',"hidden");
+			k.setAttribute('name',"call_uuid");
+			k.value= call_uuid;
+
+			var s = document.createElement("input"); //input element, Submit button
+			s.setAttribute('type',"submit");
+			s.setAttribute('value',"Submit");
+			s.style.display='none';
+
+			f.appendChild(i);
+			f.appendChild(k);
+			f.appendChild(s);
+
+			document.getElementsByTagName('body')[0].appendChild(f);
+
+			f.submit();
+		}
+
 	</script>
 
 <?php
